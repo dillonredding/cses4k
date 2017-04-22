@@ -1,7 +1,7 @@
-# C# Event Simulation for Kotlin
+# Kotlin Events
 This is a library that allows for C#-style events in Kotlin.
 
-## Kotlin Events
+## C# Event Simulation
 ### Event Arguments
 You can define your own event arguments by extending the `EventArgs` class.
 ```kotlin
