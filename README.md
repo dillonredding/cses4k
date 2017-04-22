@@ -15,7 +15,6 @@ Unlike .NET, there are distinct names for the args and no-args versions.
 This is due to the Java's implementation of generics as syntactic sugar for casting.
 
 Luckily, we can still simulate the usage of .NET events.
-
 ```kotlin
 class EventDrivenObject {
     val someEvent = EventHandler<MyEventArgs>()
@@ -26,7 +25,7 @@ class EventDrivenObject {
 }
 ```
 
-For events with no data, we use the `NoArgsEventHandler`.
+For events with no data, you can use the `NoArgsEventHandler`.
 ```kotlin
 class EventDrivenObject {
     val someEvent = NoArgsEventHandler()
@@ -37,8 +36,10 @@ class EventDrivenObject {
 }
 ```
 
+As you can see, to fire an event we simply invoke the even handler.
+
 #### Adding
-We can add handlers to our `EventHandler`  with the `+=` operator.
+We can add handlers to an event handler with the `+=` operator.
 `Handler<T>` is simply a type alias for the function type `(Any, T) -> Unit` where `T` is a subclass of `EventArgs`.
 `NoArgsHandler` represents the function type `(Any) - Unit`. 
 As such, we can add any of the following to an event handler:
