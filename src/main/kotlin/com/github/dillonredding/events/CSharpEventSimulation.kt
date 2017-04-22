@@ -2,44 +2,44 @@ package com.github.dillonredding.events
 
 open class EventArgs
 
-typealias Event<T> = (Any, T) -> Unit
-typealias NoArgsEvent = (Any) -> Unit
+typealias Handler<T> = (Any, T) -> Unit
+typealias NoArgsHandler = (Any) -> Unit
 
 abstract class AbstractEventHandler<T> {
-    protected val events = mutableListOf<T>()
+    protected val handlers = mutableListOf<T>()
 
     /**
-     * Adds an event to this handler.
+     * Adds a handler to this event handler.
      * When adding a reference to a companion object method, Companion must be specified (e.g., event += Class.Companion::method).
      * Use caution when adding top-level functions as these cannot be removed via -= (minusAssign).
      */
-    operator fun plusAssign(event: T) {
-        events.add(event)
+    operator fun plusAssign(handler: T) {
+        handlers.add(handler)
     }
 
     /**
      * Removes a single instance of the specified event from this handler, if it is present.
      * This does not work with top-level functions.
      */
-    operator fun minusAssign(event: T) {
-        events.remove(event)
+    operator fun minusAssign(handler: T) {
+        handlers.remove(handler)
     }
 }
 
-class EventHandler<T : EventArgs> : AbstractEventHandler<Event<T>>() {
+class EventHandler<T : EventArgs> : AbstractEventHandler<Handler<T>>() {
     /**
-     * Fires the events associated to this handler.
+     * Fires the event and notifies the associated handlers.
      */
     operator fun invoke(sender: Any, args: T) {
-        events.forEach { it(sender, args) }
+        handlers.forEach { it(sender, args) }
     }
 }
 
-class NoArgsEventHandler : AbstractEventHandler<NoArgsEvent>() {
+class NoArgsEventHandler : AbstractEventHandler<NoArgsHandler>() {
     /**
-     * Fires the events associated to this handler.
+     * Fires the event and notifies the associated handlers.
      */
     operator fun invoke(sender: Any) {
-        events.forEach { it(sender) }
+        handlers.forEach { it(sender) }
     }
 }
