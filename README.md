@@ -40,12 +40,12 @@ As you can see, to fire an event we simply invoke the even handler.
 
 #### Adding
 We can add handlers to an event handler with the `+=` operator.
-`Handler<T>` is simply a type alias for the function type `(Any, T) -> Unit` where `T` is a subclass of `EventArgs`.
+`Handler<T>` is simply a type alias for the function type `(Any, T) -> Unit` where `T` should be a subclass of `EventArgs` (this constraint cannot be forced since it is a type alias).
 `NoArgsHandler` represents the function type `(Any) - Unit`. 
 As such, we can add any of the following to an event handler:
 - **Lambdas**
 - **Top-level functions**
-  - You *cannot* remove top-level functions they've been added.
+  - You *cannot* remove top-level functions they've been added (see [Removing](#removing) below).
 - **Instance methods**
 - **Companion object methods**
   - When adding a reference to a companion object method, you have to qualify the companion object (see the example below).
