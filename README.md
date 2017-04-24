@@ -5,7 +5,7 @@ This is a library that allows for C#-style events in Kotlin.
 ### Event Arguments
 You can define your own event arguments by extending the `EventArgs` class.
 ```kotlin
-class MyEventArgs(val arg1: Int, val arg2: String) : EventArgs()
+data class MyEventArgs(val arg1: Int, val arg2: String) : EventArgs()
 ```
 
 ### Event Handlers
