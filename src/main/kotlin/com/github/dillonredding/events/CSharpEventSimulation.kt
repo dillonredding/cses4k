@@ -44,10 +44,6 @@ class NoArgsEventHandler : AbstractEventHandler<NoArgsHandler>() {
     }
 }
 
-inline fun <reified T : EventArgs> eventHandler(): EventHandler<T> {
-    return EventHandler()
-}
+inline fun <reified T : EventArgs> eventHandler(): EventHandler<T> = EventHandler()
 
-fun eventHandler(): NoArgsEventHandler {
-    return NoArgsEventHandler()
-}
+fun eventHandler(): NoArgsEventHandler = NoArgsEventHandler()
