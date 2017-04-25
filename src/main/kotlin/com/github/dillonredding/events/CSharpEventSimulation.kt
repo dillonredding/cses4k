@@ -43,3 +43,11 @@ class NoArgsEventHandler : AbstractEventHandler<NoArgsHandler>() {
         handlers.forEach { it(sender) }
     }
 }
+
+inline fun <reified T : EventArgs> eventHandler(): EventHandler<T> {
+    return EventHandler()
+}
+
+fun eventHandler(): NoArgsEventHandler {
+    return NoArgsEventHandler()
+}

@@ -10,14 +10,16 @@ data class MyEventArgs(val arg1: Int, val arg2: String) : EventArgs()
 
 ### Event Handlers
 There are two types of event handlers: `EventHandler<T>` and `NoArgsEventHandler`.
+These are for events with and without data, respectively.
 
-Unlike .NET, there are distinct names for the args and no-args versions.
+Unlike .NET, there are distinct names for the args and no-args versions of event handlers.
 This is due to the Java's implementation of generics as syntactic sugar for casting.
+However, using Kotlin's reified type parameters, we can simulate the convenience provided by .NET.
 
-Luckily, we can still simulate the usage of .NET events.
+For events with data, use the `eventHandler<T>` method.
 ```kotlin
 class EventDrivenObject {
-    val someEvent = EventHandler<MyEventArgs>()
+    val someEvent = eventHandler<MyEventArgs>()
 
     fun eventFiringMethod() {
         someEvent(this, MyEventArgs(42, "foo"))
@@ -25,10 +27,10 @@ class EventDrivenObject {
 }
 ```
 
-For events with no data, you can use the `NoArgsEventHandler`.
+For events without data, simply drop the type parameter.
 ```kotlin
 class EventDrivenObject {
-    val someEvent = NoArgsEventHandler()
+    val someEvent = eventHandler()
 
     fun eventFiringMethod() {
         someEvent(this)
