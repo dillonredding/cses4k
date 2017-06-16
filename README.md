@@ -1,4 +1,4 @@
-# Kotlin Events
+# events4k
 This is a library that allows for C#-style events in Kotlin.
 
 ## C# Event Simulation
