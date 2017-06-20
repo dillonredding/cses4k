@@ -47,7 +47,7 @@ We can add handlers to an event handler with the `+=` operator.
 As such, we can add any of the following to an event handler:
 - **Lambdas**
 - **Top-level functions**
-  - You *cannot* remove top-level functions they've been added (see [Removing](#removing) below).
+  - You *cannot* remove top-level functions once they've been added (see [Removing](#removing) below).
 - **Instance methods**
 - **Companion object methods**
   - When adding a reference to a companion object method, you have to qualify the companion object (see the example below).
